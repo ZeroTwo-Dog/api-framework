@@ -1,1 +1,1 @@
-rootProject.name = "framework"
+rootProject.name = "api-framework"

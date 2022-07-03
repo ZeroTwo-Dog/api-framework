@@ -27,15 +27,35 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 	implementation("org.springframework.boot:spring-boot-starter-security")
 	implementation("org.springframework.boot:spring-boot-starter-web")
+	developmentOnly("org.springframework.boot:spring-boot-devtools")
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
+
+	//lombok
+	compileOnly("org.projectlombok:lombok")
+	annotationProcessor("org.projectlombok:lombok")
+
+
+	//코틀린
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-	compileOnly("org.projectlombok:lombok")
-	developmentOnly("org.springframework.boot:spring-boot-devtools")
+
+	//DB
 	runtimeOnly("mysql:mysql-connector-java")
-	annotationProcessor("org.projectlombok:lombok")
+	runtimeOnly("com.h2database:h2:1.4.200")
+
+	//GraphQL
+	implementation("org.springframework.boot:spring-boot-starter-graphql")
+	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
+
+
+	//Test
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.springframework.security:spring-security-test")
+	testImplementation("org.springframework.graphql:spring-graphql-test")
+	testImplementation("org.springframework:spring-webflux")
+
+
+
 }
 
 tasks.withType<KotlinCompile> {
