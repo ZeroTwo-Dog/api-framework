@@ -1,1 +1,29 @@
 
+
+spring:
+  graphql:
+    graphiql:
+      enabled: true
+      # graphiql을 true를 설정해 주면 localhost:8080/h2-console과 같이 localhost:8080/graphiql 통해
+      # graphql 쿼리를 테스트가 가능합니다.
+      printer:
+        enabled: true
+        # 이 설정 시 jpa에 show-sql 같이 graphql 쿼리를 출력해 줍니다.
+
+
+  datasource:
+    url: jdbc:h2:tcp://localhost/~/jpashop
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+
+    jpa:
+      hibernate:
+        ddl-auto: create
+      properties:
+        hibernate:
+          #        show_sql: true
+          format_sql: true
+          default_batch_fetch_size: 1000 #최적화 옵션
+
+
