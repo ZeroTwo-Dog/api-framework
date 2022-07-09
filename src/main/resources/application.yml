@@ -11,19 +11,19 @@ spring:
         # 이 설정 시 jpa에 show-sql 같이 graphql 쿼리를 출력해 줍니다.
 
 
+  #TODO: 프로필 추가
   datasource:
-    url: jdbc:h2:tcp://localhost/~/jpashop
-    username: sa
-    password:
-    driver-class-name: org.h2.Driver
-
-    jpa:
-      hibernate:
-        ddl-auto: create
-      properties:
-        hibernate:
-          #        show_sql: true
-          format_sql: true
-          default_batch_fetch_size: 1000 #최적화 옵션
+    url: jdbc:mysql://localhost:3306/framework?characterEncoding=UTF-8&serverTimezone=Asia/Seoul
+    username: root
+    password: root
+    driverClassName: com.mysql.cj.jdbc.Driver
+  jpa:
+    properties.hibernate:
+    hibernate:
+      ddl-auto: create
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
+  #TODO: logging decorator
 
 
