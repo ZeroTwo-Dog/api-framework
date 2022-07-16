@@ -14,19 +14,17 @@
 | ---------------------------------- | ------------- | ---------------------------- |
 | spring boot                        | 2.7.1         |                              |
 | jpa                                | 3.0.1         |                              |
-| graph ql                           | 3.0.1         |                              |
 | swagger                            | 4.0.0         | API 개발 및 API 문서            |
-| query dsl                          | 0.3.3         | 인증.인가                      |
-|                                    | 0.0.0         |                              |
+| query dsl                          | 0.3.3         |                          |
+| spring-boot-starter-graphql        | 1.0.0         | 스프링에서 공식제공 GraphQl       
 
 
 ## 프로젝트 초기 설정
 
 - `TODO`, `FIXME` 확인 하고 수정한다
-- Constants.js  확인하고 수정한다
 - `.application.yml` 파일 확인하고 수정한다
-  - `DB URL`  :
-  - `AWS KEY` :  
+- `DB URL`  :
+- `AWS KEY` :  
 
   
 
@@ -68,4 +66,12 @@
 ## 배포하기
 
 
+## 그래프큐엘 스키마 폴더 정책
 
+- `resources/graphql/`도메인명
+  - 도메인명의 기준은  `kr.co.jh.frameowork`도메인명 <- 위 폴더 구조와 동일하다.
+- `resources/graphql/도메인명` 안에 .graphqls 구조
+  - `도메인명.graphqls` 안에 도메인 type, query, mutation 도메인과 메소드가 들어감 
+  - `도메인명Input.graphqls` 안에 post, put에 대한 RequestBody 값이 들어감  
+
+  
