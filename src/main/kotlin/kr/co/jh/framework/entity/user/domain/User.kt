@@ -1,5 +1,6 @@
 package kr.co.jh.framework.entity.user.domain
 
+import kr.co.jh.framework.user.dto.UserIn
 import lombok.AllArgsConstructor
 import lombok.EqualsAndHashCode
 import lombok.Getter
@@ -28,4 +29,11 @@ class User(
         ){
 
     constructor(userId: String, email: String) : this(null, userId,email)
+
+    companion object {
+        fun toEntity(userIn: UserIn): User {
+            return User(null, userIn.userId, userIn.email )
+
+        }
+    }
 }

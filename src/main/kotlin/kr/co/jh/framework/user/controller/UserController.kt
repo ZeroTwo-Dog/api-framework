@@ -1,6 +1,7 @@
 package kr.co.jh.framework.user.controller
 
 import kr.co.jh.framework.entity.user.domain.User
+import kr.co.jh.framework.user.dto.UserIn
 import kr.co.jh.framework.user.service.UserCommandService
 import org.springframework.graphql.data.method.annotation.Argument
 import org.springframework.graphql.data.method.annotation.MutationMapping
@@ -29,7 +30,7 @@ class UserController (private val userService: UserCommandService){
     }
 
     @MutationMapping
-    fun save(@Argument user: User) : ResponseEntity<User> {
-        return ResponseEntity.ok(userService.save(user))
+    fun saveUser(@Argument input: UserIn) : User {
+        return userService.saveUser(input)
     }
 }

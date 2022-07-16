@@ -6,7 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.graphql.data.GraphQlRepository
 import org.springframework.stereotype.Repository
 
-//@Repository
 @GraphQlRepository
 interface UserRepository : JpaRepository<User, Long> {
 

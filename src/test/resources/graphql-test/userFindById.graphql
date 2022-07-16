@@ -1,0 +1,10 @@
+
+query graphQLFindById($id :ID!){
+    graphQLFindById (id: $id) {
+        no
+        userId
+        email
+
+    }
+
+}

@@ -6,9 +6,12 @@ spring:
       enabled: true
       # graphiql을 true를 설정해 주면 localhost:8080/h2-console과 같이 localhost:8080/graphiql 통해
       # graphql 쿼리를 테스트가 가능합니다.
+    schema:
       printer:
         enabled: true
         # 이 설정 시 jpa에 show-sql 같이 graphql 쿼리를 출력해 줍니다.
+      locations: classpath:graphql/**/
+      file-extensions: .graphqls, .gqls
 
 
   #TODO: 프로필 추가

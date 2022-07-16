@@ -1,0 +1,8 @@
+
+
+mutation saveUser($input: CreateUserInput) {
+    saveUser(input: $input) {
+        userId
+        email
+    }
+}
