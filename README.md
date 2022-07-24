@@ -15,7 +15,7 @@
 | spring boot                        | 2.7.1         |                              |
 | jpa                                | 3.0.1         |                              |
 | swagger                            | 4.0.0         | API 개발 및 API 문서            |
-| query dsl                          | 0.3.3         |                          |
+| query dsl                          | 5.0.0         |                          |
 | spring-boot-starter-graphql        | 1.0.0         | 스프링에서 공식제공 GraphQl       
 
 

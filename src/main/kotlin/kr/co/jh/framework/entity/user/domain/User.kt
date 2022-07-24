@@ -18,7 +18,7 @@ import javax.persistence.Id
 class User(
     @Id @GeneratedValue
     @Column(name = "NO")
-    val no: Long?,
+    val no: Long? = null,
 
 
     @Column(name = "USER_ID")

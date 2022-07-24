@@ -7,6 +7,6 @@ import org.springframework.graphql.data.GraphQlRepository
 import org.springframework.stereotype.Repository
 
 @GraphQlRepository
-interface UserRepository : JpaRepository<User, Long> {
+interface UserRepository : JpaRepository<User, Long> , UserRepositoryCustom{
 
 }

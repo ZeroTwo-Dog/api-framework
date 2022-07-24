@@ -10,7 +10,7 @@ class UserCommandService (private val userRepository: UserRepository) {
 
 
     fun findById(id: Long): User {
-        return userRepository.findById(id).get()
+        return userRepository.getByPK(id)
     }
 
     fun findByList(): List<User> {
