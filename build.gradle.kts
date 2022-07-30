@@ -60,6 +60,7 @@ version = "0.0.1-SNAPSHOT"
 		//DB
 		runtimeOnly("mysql:mysql-connector-java")
 		runtimeOnly("com.h2database:h2:1.4.200")
+		implementation("com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.8.0")
 
 		//GraphQL
 		implementation("org.springframework.boot:spring-boot-starter-graphql")
