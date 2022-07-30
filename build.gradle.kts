@@ -3,18 +3,20 @@ import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
 
 
 plugins {
+	val kotlinVersion = "1.6.21"
+
 	id("org.springframework.boot") version "2.7.1"
 	id("io.spring.dependency-management") version "1.0.11.RELEASE"
 	id("com.ewerk.gradle.plugins.querydsl") version "1.0.10"
-	kotlin("jvm") version "1.6.21"
-	kotlin("kapt") version "1.6.21"
-	kotlin("plugin.spring") version "1.6.21"
-	kotlin("plugin.jpa") version "1.6.21"
+	kotlin("jvm") version kotlinVersion
+	kotlin("kapt") version kotlinVersion
+	kotlin("plugin.spring") version kotlinVersion
+	kotlin("plugin.jpa") version kotlinVersion
 }
 
 
 	group = "kr.co.jh"
-	version = "0.0.1-SNAPSHOT"
+version = "0.0.1-SNAPSHOT"
 	java.sourceCompatibility = JavaVersion.VERSION_11
 
 	configurations {
