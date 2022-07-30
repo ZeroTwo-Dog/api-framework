@@ -58,10 +58,21 @@
 
 `VM Option`세팅
 
-- `-Dspring.profiles.active=환경명`
+-![img.png](readmeImg/img.png)
 - develop: 개발 / test: 테스트 / product: 운영
 
+### 개발환경 DB 세팅
 
+- schema.sql 테이블 세팅
+- data.sql 임시 데이터 세팅
+- `defer-datasource-initialization: true` 스프링 2.5.0 이후로 data.sql을 schema.sql 이후에 실행 시키기 위한 설정
+```
+  sql:
+    init:
+      schema-locations: classpath:sql/schema.sql
+      data-locations: classpath:sql/data.sql
+      mode: always
+```
 
 ## 배포하기
 
