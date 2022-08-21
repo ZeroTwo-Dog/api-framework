@@ -1,0 +1,66 @@
+spring:
+  graphql:
+    graphiql:
+      enabled: true
+      # graphiql을 true를 설정해 주면 localhost:8080/h2-console과 같이 localhost:8080/graphiql 통해
+      # graphql 쿼리를 테스트가 가능합니다.
+    schema:
+      locations: classpath:graphql/**/
+      file-extensions: .graphqls, .gqls
+  devtools:
+    livereload:
+      enabled: true
+  profiles:
+    include:
+      - entity
+
+---
+#develop mode
+spring:
+  config:
+    activate:
+      on-profile: develop
+
+
+logging:
+  level:
+    root: ERROR
+    p6spy: info
+    org.springframework.security: DEBUG
+    org.springframework.web.client: DEBUG
+    org.hibernate.SQL : ERROR
+  pattern:
+    console: "[%highlight(%-5level) %d{yyyy-MM-dd HH:mm:ss} ] %msg | %X{userId} |%X{errCode}%n"
+
+
+
+---
+#test mode
+spring:
+  config:
+    activate:
+      on-profile: test
+
+logging:
+  level: error
+
+decorator:
+  datasource:
+    p6spy:
+      enable-logging: false
+
+---
+#product mode
+spring:
+  config:
+    activate:
+      on-profile: test
+
+logging:
+  level: error
+
+
+decorator:
+  datasource:
+    p6spy:
+      enable-logging: false
