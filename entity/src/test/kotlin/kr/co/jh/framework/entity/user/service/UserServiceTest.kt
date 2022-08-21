@@ -1,7 +1,5 @@
-package kr.co.jh.framework.user_api.user.service
+package kr.co.jh.framework.entity.user.service
 
-import kr.co.jh.framework.entity.user.domain.User
-import kr.co.jh.framework.entity.user.repository.UserRepository
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
@@ -9,12 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.graphql.tester.AutoConfigureGraphQlTester
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.graphql.test.tester.GraphQlTester
+import org.springframework.test.context.ActiveProfiles
 
-
-@SpringBootTest
+@SpringBootTest(properties = ["spring.config.location=classpath:application-entity.yml"])
+@ActiveProfiles("develop")
 @AutoConfigureGraphQlTester
 class UserServiceTest (
-    @Autowired private val userRepository: UserRepository,
     @Autowired private val graphQlTester:GraphQlTester
     ) {
 
@@ -22,15 +20,6 @@ class UserServiceTest (
     @Test
     @DisplayName("유저 단건 조회")
     fun graphQLFindById () {
-        val user1 = User("wl507","wl5407@gmail.com");
-        val user2 = User("283po1","283po1@naver.com");
-        val user3 = User("wls507","wls5047@naver.com");
-
-        val list = mutableListOf(user1, user2, user3)
-
-
-        userRepository.saveAll(list)
-
         val email = graphQlTester.documentName("userFindById")
             .variable("id", 1L)
             .execute()
@@ -47,15 +36,6 @@ class UserServiceTest (
     @Test
     @DisplayName("유저 다건 조회")
     fun getList () {
-        val user1 = User("wl507","wl5407@gmail.com");
-        val user2 = User("283po1","283po1@naver.com");
-        val user3 = User("wls507","wls5047@naver.com");
-
-        val list = mutableListOf(user1, user2, user3)
-
-
-        userRepository.saveAll(list)
-
         graphQlTester.documentName("userGetList")
             .execute()
             .path("getList[*].userId")
