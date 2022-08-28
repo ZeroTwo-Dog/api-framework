@@ -13,6 +13,7 @@ spring:
   profiles:
     include:
       - entity
+      - lib
 
 ---
 #develop mode

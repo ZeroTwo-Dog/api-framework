@@ -27,17 +27,12 @@ repositories {
 }
 
 dependencies {
-    //멀티모듈
-    implementation(project(":entity"))
-    implementation(project(":lib"))
 
+//	implementation("org.springframework.boot:spring-boot-starter-security")
     implementation("org.springframework.boot:spring-boot-starter-web")
     developmentOnly("org.springframework.boot:spring-boot-devtools")
-    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
-
-
 
     //lombok
     compileOnly("org.projectlombok:lombok")
@@ -49,11 +44,6 @@ dependencies {
     //코틀린
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-
-
-    //GraphQL
-    implementation("org.springframework.boot:spring-boot-starter-graphql")
-    implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 
 
     //Test
@@ -76,9 +66,4 @@ tasks.withType<Test> {
     useJUnitPlatform()
 }
 
-allOpen {
-    annotation("javax.persistence.Entity")
-    annotation("javax.persistence.MappedSuperclass")
-    annotation("javax.persistence.Embeddable")
-}
 

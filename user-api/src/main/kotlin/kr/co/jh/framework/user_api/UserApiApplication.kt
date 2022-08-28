@@ -6,7 +6,7 @@ import org.springframework.boot.runApplication
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories
 
 @SpringBootApplication(scanBasePackages = [
-    "kr.co.jh.framework.entity","kr.co.jh.framework.user_api" ]
+    "kr.co.jh.framework.entity","kr.co.jh.framework.lib","kr.co.jh.framework.user_api" ]
 )
 @EntityScan("kr.co.jh.framework.entity")
 @EnableJpaRepositories("kr.co.jh.framework.entity")
