@@ -1,5 +1,5 @@
 type User {
-    no:ID!
+    id:ID!
     userId:String
     email:String
 }

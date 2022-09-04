@@ -10,7 +10,7 @@ class UserRepositoryImpl :QuerydslRepositorySupport(User::class.java), UserRepos
 
     override fun getByPK(id: Long) : User {
         return from(qUser)
-            .where(qUser.no.eq(id))
+            .where(qUser.id.eq(id))
             .fetchOne() ?: throw DomainEntityNotFoundException(id, "찾는 유저가 존재하지않습니다.")
     }
 

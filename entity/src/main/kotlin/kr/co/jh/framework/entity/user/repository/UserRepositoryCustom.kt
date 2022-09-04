@@ -4,5 +4,5 @@ import kr.co.jh.framework.entity.user.domain.User
 
 interface UserRepositoryCustom {
 
-    fun getByPK(no: Long) : User
+    fun getByPK(id: Long) : User
 }
