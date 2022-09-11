@@ -3,9 +3,9 @@ SET FOREIGN_KEY_CHECKS = 0;
 
 
 delete from USER;
-insert into USER (USER_NO, USER_ID, EMAIL, PASSWORD, FAIL_CNT, LOCK_YN, STATUS) values (1, "wl507","wl5407@gmail.com", "test", 0, "N", "ACTIVE" );
-insert into USER (USER_NO, USER_ID, EMAIL, PASSWORD, FAIL_CNT, LOCK_YN, STATUS) values (2, "283po1","283po1@naver.com", "test", 0, "N", "ACTIVE" );
-insert into USER (USER_NO, USER_ID, EMAIL, PASSWORD, FAIL_CNT, LOCK_YN, STATUS) values (3, "wls507","wls5047@naver.com", "test", 0, "N", "ACTIVE" );
+insert into USER (USER_NO, USER_ID, EMAIL, PASSWORD, FAIL_CNT, LOCK_YN, STATUS) values (1, "wl5407","wl5407@gmail.com", "$2a$10$uq2sNl0GgiqurhQkEeoaIORNEE0orXJgp6R.B0eXusv2/KDik5VuS", 0, "N", "ACTIVE" );
+insert into USER (USER_NO, USER_ID, EMAIL, PASSWORD, FAIL_CNT, LOCK_YN, STATUS) values (2, "283po1","283po1@naver.com", "$2a$10$uq2sNl0GgiqurhQkEeoaIORNEE0orXJgp6R.B0eXusv2/KDik5VuS", 0, "N", "ACTIVE" );
+insert into USER (USER_NO, USER_ID, EMAIL, PASSWORD, FAIL_CNT, LOCK_YN, STATUS) values (3, "wls507","wls5047@naver.com", "$2a$10$uq2sNl0GgiqurhQkEeoaIORNEE0orXJgp6R.B0eXusv2/KDik5VuS", 0, "N", "ACTIVE" );
 
 delete from ROLE;
 insert into ROLE (ROLE_NO, ROLE_TYPE)values (100, "ROLE_USER");

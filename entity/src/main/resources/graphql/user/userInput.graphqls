@@ -9,3 +9,9 @@ input RegisterUserInput {
     email: String!
     password: String!
 }
+
+
+input LoginInput {
+    userId: String!
+    password: String!
+}
