@@ -18,7 +18,7 @@ class User(
     val id: Long? = null,
 
     @Column(name = "PASSWORD")
-    val password: String,
+    var password: String,
 
 
     @Column(name = "USER_ID")
@@ -61,6 +61,10 @@ class User(
 
     fun checkWithdrawUser(): Boolean {
         return status == Status.WITHDRAW
+    }
+
+    fun addRoles(role: Role) {
+        roles.plus(role)
     }
 
 }

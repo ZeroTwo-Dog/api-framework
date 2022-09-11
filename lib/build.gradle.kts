@@ -28,7 +28,13 @@ repositories {
 
 dependencies {
 
+
+    //시큐리티용
+    implementation(project(":entity"))
+
 	implementation("org.springframework.boot:spring-boot-starter-security")
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+
     implementation("org.springframework.boot:spring-boot-starter-web")
     developmentOnly("org.springframework.boot:spring-boot-devtools")
 

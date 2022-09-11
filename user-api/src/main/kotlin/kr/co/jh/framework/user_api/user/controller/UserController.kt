@@ -2,7 +2,7 @@ package kr.co.jh.framework.user_api.user.controller
 
 import kr.co.jh.framework.user_api.user.dto.UserIn
 import kr.co.jh.framework.user_api.user.service.command.UserCommandService
-import kr.co.jh.framework.user_api.user.service.query.UserQueryService
+import kr.co.jh.framework.user_api.user.service.query.UserAuthQueryService
 import kr.co.jh.framework.entity.user.domain.User
 import org.springframework.graphql.data.method.annotation.Argument
 import org.springframework.graphql.data.method.annotation.MutationMapping
@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 
 @Controller
-class UserController (private val userCommandService: UserCommandService, val userQueryService: UserQueryService){
+class UserController (private val userCommandService: UserCommandService, val userAuthQueryService: UserAuthQueryService){
 
     @GetMapping("/user/{id}")
     fun findById(@PathVariable("id") id: Long) : ResponseEntity<User> {
@@ -30,8 +30,8 @@ class UserController (private val userCommandService: UserCommandService, val us
         return userCommandService.findByList()
     }
 
-    @MutationMapping
-    fun saveUser(@Argument input: UserIn) : User {
-        return userQueryService.saveUser(input)
-    }
+//    @MutationMapping
+//    fun saveUser(@Argument input: UserIn) : User {
+//        return userAuthQueryService.saveUser(input)
+//    }
 }

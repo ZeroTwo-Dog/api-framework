@@ -14,5 +14,11 @@ class UserRepositoryImpl :QuerydslRepositorySupport(User::class.java), UserRepos
             .fetchOne() ?: throw DomainEntityNotFoundException(id, "찾는 유저가 존재하지않습니다.")
     }
 
+    override fun getByUserId(userId: String): User {
+        return from(qUser)
+            .where(qUser.userId.eq(userId))
+            .fetchOne() ?: throw DomainEntityNotFoundException(userId, "찾는 유저가 존재하지않습니다.")
+    }
+
 
 }

@@ -10,7 +10,7 @@ class UserIn(val userId: String, val email: String) {
 
     companion object {
         fun toEntity(userIn: UserIn) : User {
-            return User(userId = userIn.userId, email = userIn.email)
+            return User(userId = userIn.userId, email = userIn.email,"test")
         }
 
     }

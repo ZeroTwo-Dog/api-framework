@@ -2,3 +2,10 @@ input CreateUserInput {
     userId: String
     email: String
 }
+
+
+input RegisterUserInput {
+    userId: String!
+    email: String!
+    password: String!
+}

@@ -2,14 +2,16 @@ type User {
     id:ID!
     userId:String
     email:String
+    password: String
 }
-
+# Controller에 @MutationMapping 메서드명과 같아야 합니다.
 type Query {
-    graphQLFindById(id: ID!): User # Controller에 @QueryMapping 메서드명과 같아야 합니다.
+    graphQLFindById(id: ID!): User
     getList: [User]
 }
 
-
+# Controller에 @MutationMapping 메서드명과 같아야 합니다.
 type Mutation {
-    saveUser(input: CreateUserInput):User # Controller에 @MutationMapping 메서드명과 같아야 합니다.
+    saveUser(input: CreateUserInput):User
+    registerUser(input: RegisterUserInput!):User
 }
