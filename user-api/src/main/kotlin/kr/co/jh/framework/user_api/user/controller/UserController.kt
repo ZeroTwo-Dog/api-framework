@@ -1,11 +1,9 @@
 package kr.co.jh.framework.user_api.user.controller
 
-import kr.co.jh.framework.user_api.user.dto.UserIn
 import kr.co.jh.framework.user_api.user.service.command.UserCommandService
 import kr.co.jh.framework.user_api.user.service.query.UserAuthQueryService
 import kr.co.jh.framework.entity.user.domain.User
 import org.springframework.graphql.data.method.annotation.Argument
-import org.springframework.graphql.data.method.annotation.MutationMapping
 import org.springframework.graphql.data.method.annotation.QueryMapping
 import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Controller
