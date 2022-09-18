@@ -49,7 +49,6 @@ class WebSecurityConfig(private val userDetailsService: UserDetailsService,
         return http.userDetailsService(userDetailsService)
             .csrf().disable()
             .formLogin().disable()
-            //TODO: 로그인 회원가입 만들어지면 제거 (form 형식 사용)
             //TODO: 시큐리티 작업끝나면 그래퓨큐엘 에러메시지 바꿔야함
             .exceptionHandling()
                 .authenticationEntryPoint(authenticationEntryPoint)

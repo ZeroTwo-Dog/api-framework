@@ -14,8 +14,7 @@ import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.stereotype.Service
 
 @Service
-class UserAuthCommandService (private val userRepository: UserRepository,
-                              private val authenticationManager: AuthenticationManager
+class UserAuthCommandService (private val authenticationManager: AuthenticationManager
  ) {
 
     fun login (loginDto: LoginDto): User {
@@ -28,6 +27,7 @@ class UserAuthCommandService (private val userRepository: UserRepository,
         } catch (e: DisabledException) {  // 유효한 회원이 아님
             throw InvalidUserException("LOGIN_FAIL")
         } catch (e: BadCredentialsException) {
+//            TODO: lock Count 처리
 //            failPassword(userId)
             throw BadCredentialsException("FAIL_PASSWORD")
         } catch (e: LockedException) {    // 계정 잠김
