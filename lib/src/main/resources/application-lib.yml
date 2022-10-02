@@ -1,0 +1,4 @@
+jwt:
+  header: Authorization
+  secret: FrameworkApiParkJiHwanJWTSecretKey129600000012960000001296000000
+  expirationMills: 1296000000 #15일

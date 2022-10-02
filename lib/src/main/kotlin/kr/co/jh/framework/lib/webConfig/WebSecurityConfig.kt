@@ -2,6 +2,8 @@ package kr.co.jh.framework.lib.webConfig
 
 import kr.co.jh.framework.lib.security.AuthenticationEntryPoint
 import kr.co.jh.framework.lib.security.CustomAccessDeniedHandler
+import kr.co.jh.framework.lib.security.jwt.JwtAuthenticationEntryPoint
+import kr.co.jh.framework.lib.security.jwt.JwtAuthenticationFilter
 import lombok.AllArgsConstructor
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -16,6 +18,7 @@ import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.security.web.SecurityFilterChain
+import org.springframework.security.web.authentication.AnonymousAuthenticationFilter
 
 
 /**
@@ -27,7 +30,8 @@ import org.springframework.security.web.SecurityFilterChain
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true, jsr250Enabled = true)
 @AllArgsConstructor
 class WebSecurityConfig(private val userDetailsService: UserDetailsService,
-                        private val authenticationEntryPoint: AuthenticationEntryPoint,
+                        private val authenticationEntryPoint: JwtAuthenticationEntryPoint,
+                        private val jwtAuthenticationFilter: JwtAuthenticationFilter,
                         private val accessDeniedHandler: CustomAccessDeniedHandler
 ) {
 
@@ -50,6 +54,7 @@ class WebSecurityConfig(private val userDetailsService: UserDetailsService,
             .csrf().disable()
             .formLogin().disable()
             //TODO: 시큐리티 작업끝나면 그래퓨큐엘 에러메시지 바꿔야함
+            .addFilterBefore(jwtAuthenticationFilter, AnonymousAuthenticationFilter::class.java)
             .exceptionHandling()
                 .authenticationEntryPoint(authenticationEntryPoint)
                 .accessDeniedHandler(accessDeniedHandler)

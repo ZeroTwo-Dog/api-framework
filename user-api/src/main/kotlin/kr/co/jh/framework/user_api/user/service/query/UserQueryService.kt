@@ -1,4 +1,4 @@
-package kr.co.jh.framework.user_api.user.service.command
+package kr.co.jh.framework.user_api.user.service.query
 
 import kr.co.jh.framework.entity.exception.DomainEntityNotFoundException
 import kr.co.jh.framework.entity.user.domain.User
@@ -6,7 +6,7 @@ import kr.co.jh.framework.entity.user.repository.UserRepository
 import org.springframework.stereotype.Service
 
 @Service
-class UserCommandService (private val userRepository: UserRepository) {
+class UserQueryService (private val userRepository: UserRepository) {
 
 
     fun findById(id: Long): User {

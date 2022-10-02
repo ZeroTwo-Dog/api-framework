@@ -17,6 +17,10 @@ internal class UserAuthCommandServiceTest(
     @Autowired
     private val userAuthCommandService: UserAuthCommandService) {
 
+
+
+
+
     @Test
     @DisplayName("로그인 성공 케이스")
     fun login() {
@@ -50,4 +54,7 @@ internal class UserAuthCommandServiceTest(
         assertThrows(UserNotFoundException::class.java) { userAuthCommandService.login(loginDto) }
 
     }
+
+
+
 }

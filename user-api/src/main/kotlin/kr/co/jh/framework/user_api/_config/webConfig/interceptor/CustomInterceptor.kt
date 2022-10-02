@@ -14,7 +14,7 @@ import reactor.core.publisher.Mono
  */
 @Configuration
 //TODO: 프로젝트에서 인터셉터 필요할때 아래 변경해서 사용
-class CustumInterceptor : WebGraphQlInterceptor {
+class CustomInterceptor : WebGraphQlInterceptor {
 
 
     override fun intercept(
