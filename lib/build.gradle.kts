@@ -55,6 +55,9 @@ dependencies {
     testAnnotationProcessor("org.projectlombok:lombok")
 
 
+    //그래프큐엘
+    implementation("org.springframework.boot:spring-boot-starter-graphql")
+
 
 
     //코틀린

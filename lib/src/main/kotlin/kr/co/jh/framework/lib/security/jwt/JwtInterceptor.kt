@@ -1,36 +1,42 @@
 package kr.co.jh.framework.lib.security.jwt
 
 import kr.co.jh.framework.lib.security.CustomUserDetailsService
+import org.springframework.context.annotation.Configuration
+import org.springframework.graphql.server.WebGraphQlInterceptor
+import org.springframework.graphql.server.WebGraphQlRequest
+import org.springframework.graphql.server.WebGraphQlResponse
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource
-import org.springframework.stereotype.Component
 import org.springframework.util.StringUtils
-import org.springframework.web.filter.GenericFilterBean
-import javax.servlet.FilterChain
-import javax.servlet.ServletRequest
-import javax.servlet.ServletResponse
+import reactor.core.publisher.Mono
 import javax.servlet.http.HttpServletRequest
+
 /**
  * Created by park on
- * 2022/10/02.
+ * 2022/10/22
  */
-@Component
-class JwtAuthenticationFilter(private val jwtTokenProvider: JwtTokenProvider,
-    private val customUserDetailsService: CustomUserDetailsService) :GenericFilterBean() {
+@Configuration
+class JwtInterceptor(private val jwtTokenProvider: JwtTokenProvider,
+                     private val customUserDetailsService: CustomUserDetailsService
+) : WebGraphQlInterceptor {
+
 
     private val AUTHORIZATION_HEADER = "Authorization"
     private val AUTHORIZATION_BEARER = "Bearer "
 
 
-    override fun doFilter(
-        request: ServletRequest,
-        response: ServletResponse,
-        chain: FilterChain
-    ) {
+    override fun intercept(
+        request: WebGraphQlRequest,
+        chain: WebGraphQlInterceptor.Chain
+    ): Mono<WebGraphQlResponse> {
 
-        val jwt: String = resolveToken(request as HttpServletRequest)
+        if (isAnonymousAble(request.document)) {
+            return chain.next(request);
+        }
+
+        val jwt: String = resolveToken(request)
 
         try {
             if (StringUtils.hasText(jwt) && jwtTokenProvider.validateToken(jwt)) {
@@ -39,30 +45,37 @@ class JwtAuthenticationFilter(private val jwtTokenProvider: JwtTokenProvider,
                     customUserDetailsService.loadUserByUsername(userId)
                 val authenticationToken =
                     UsernamePasswordAuthenticationToken(userDetails, null, userDetails.authorities)
+                val httpRequest =  request as HttpServletRequest
                 authenticationToken.details = WebAuthenticationDetailsSource()
-                    .buildDetails(request)
+                    .buildDetails(httpRequest)
                 SecurityContextHolder.getContext().authentication = authenticationToken
             }
         } catch (e: RuntimeException) {
             SecurityContextHolder.clearContext()
         }
 
-        chain.doFilter(request, response)
-
+        return chain.next(request);
     }
-
 
     /**
      * Request Header에서 토큰 정보를 꺼내오기 위한 resolveToken 메서드
      */
-    private fun resolveToken(request: HttpServletRequest): String {
-        val bearerToken = request.getHeader(AUTHORIZATION_HEADER)
+    private fun resolveToken(request: WebGraphQlRequest): String {
+        val bearerToken = request.headers[AUTHORIZATION_HEADER].toString()
         return if (StringUtils.hasText(bearerToken) && bearerToken.startsWith(AUTHORIZATION_BEARER)) {
             bearerToken.substring(7)
         } else ""
     }
+
+
+    //권한이 필요없는 요청 체크
+    private fun isAnonymousAble(document: String) : Boolean {
+        val isAnonymousList = listOf("login", "registerUser")
+        for (list in isAnonymousList) {
+            if (document.contains(list)) {
+                return true
+            }
+        }
+        return false
+    }
 }
-
-
-
-

@@ -33,7 +33,7 @@ class User(
 
 
     @Column(name = "LOCK_YN")
-    val locked: Boolean = false, // 계정
+`    var locked: Boolean = false, // 계정
 
     @Column(name = "STATUS")
     @Enumerated(EnumType.STRING)
@@ -66,6 +66,16 @@ class User(
     fun addRoles(role: Role) {
         roles.plus(role)
     }
+
+    fun checkFailCnt(failMaxCnt: Int) {
+        if (failCnt > failMaxCnt) {
+            locked = true;
+        }
+        failCnt += 1;
+    }
+
+
+
 
 }
 

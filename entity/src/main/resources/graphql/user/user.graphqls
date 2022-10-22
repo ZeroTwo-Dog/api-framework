@@ -27,6 +27,6 @@ type Query {
 # Controller에 @MutationMapping 메서드명과 같아야 합니다.
 type Mutation {
     saveUser(input: CreateUserInput):User
-    registerUser(input: RegisterUserInput!):JwtAuthenticationResponse
+    registerUser(input: RegisterUserInput!):User
     login(input: LoginInput!):JwtAuthenticationResponse
 }
