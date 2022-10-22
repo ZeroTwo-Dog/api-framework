@@ -10,6 +10,8 @@ import kr.co.jh.framework.lib.security.jwt.JwtTokenProvider
 import kr.co.jh.framework.user_api.user.dto.LoginDto
 import kr.co.jh.framework.user_api.user.dto.SignUpIn
 import kr.co.jh.framework.user_api.user.exception.*
+import kr.co.jh.framework.user_api.user.service.query.UserQueryService
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.security.authentication.*
 import org.springframework.security.core.Authentication
 import org.springframework.security.core.context.SecurityContextHolder
@@ -20,8 +22,13 @@ import org.springframework.stereotype.Service
 class UserAuthCommandService (private val authenticationManager: AuthenticationManager,
                               private val jwtTokenProvider: JwtTokenProvider,
                               private val userRepository: UserRepository,
-                              private val passwordEncoder: PasswordEncoder
+                              private val passwordEncoder: PasswordEncoder,
+                              private val userQueryService: UserQueryService,
+                              @Value("\${maxFailCnt}")
+                              private val maxFailCnt: Int
  ) {
+
+
 
     /**
      * 로그인
@@ -38,8 +45,7 @@ class UserAuthCommandService (private val authenticationManager: AuthenticationM
         } catch (e: DisabledException) {  // 유효한 회원이 아님
             throw InvalidUserException("LOGIN_FAIL")
         } catch (e: BadCredentialsException) {
-//            TODO: lock Count 처리
-//            failPassword(userId)
+            failPassword(loginDto.userId)
             throw BadCredentialsException("FAIL_PASSWORD")
         } catch (e: LockedException) {    // 계정 잠김
             throw UserLockException("REQUIRED_CAPTCHA")
@@ -63,8 +69,8 @@ class UserAuthCommandService (private val authenticationManager: AuthenticationM
     * @param signUpIn
     */
     fun registerUser(signUpIn: SignUpIn) : User {
-        checkUserId(signUpIn.userId)
-        checkEmail(signUpIn.email)
+        userQueryService.checkUserId(signUpIn.userId)
+        userQueryService.checkEmail(signUpIn.email)
         val user = SignUpIn.toEntity(signUpIn, passwordEncoder.encode(signUpIn.password))
         user.addRoles(Role(RoleType.ROLE_USER.value, RoleType.ROLE_USER))
 
@@ -72,27 +78,15 @@ class UserAuthCommandService (private val authenticationManager: AuthenticationM
     }
 
 
+    fun failPassword(userId: String) {
+        val user = userRepository.getByUserId(userId)
+        user.checkFailCnt(maxFailCnt)
+        userRepository.save(user)
 
-    /**
-     * 중복체크 아이디
-     *
-     * @param userId
-     */
-    private fun checkUserId(userId: String) {
-        if (userRepository.findByUserId(userId).isPresent)
-            throw UserDuplicateException("USERID_ALREADY_REGISTERED")
+
     }
 
 
-    /**
-     * 중복체크 이메일
-     *
-     * @param email
-     */
-    private fun checkEmail(email: String) {
-        if (userRepository.findByEmail(email).isPresent)
-            throw UserDuplicateException("EMAIL_ALREADY_REGISTERED")
-    }
 
 
 

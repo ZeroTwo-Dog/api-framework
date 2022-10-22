@@ -23,18 +23,13 @@ class UserAuthController(
 
     //회원가입
     @MutationMapping
-    @PreAuthorize("isAnonymous()")
-    fun registerUser(@Argument input: SignUpIn): JwtAuthenticationResponse {
-        val registerUser = userAuthQueryService.registerUser(input)
-
-        //회원가입후 바로 로그인
-        return userAuthQueryService.login(LoginDto(registerUser.userId,registerUser.password))
+    fun registerUser(@Argument input: SignUpIn): User {
+        return userAuthQueryService.registerUser(input)
 
     }
 
 
     @MutationMapping
-    @PreAuthorize("isAnonymous()")
     fun login(@Argument input: LoginDto): JwtAuthenticationResponse {
         return userAuthCommandService.login(input)
 

@@ -1,3 +1,5 @@
+maxFailCnt: 5
+
 spring:
   graphql:
     graphiql:
