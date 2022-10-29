@@ -19,12 +19,12 @@ class UserController (private val userQueryService: UserQueryService, val userAu
     }
 
     @QueryMapping
-    fun graphQLFindById(@Argument id: Long) : User {
+    fun getUserFindById(@Argument id: Long) : User {
         return userQueryService.findById(id)
     }
 
     @QueryMapping
-    fun getList() : List<User> {
+    fun getUserList() : List<User> {
         return userQueryService.findByList()
     }
 

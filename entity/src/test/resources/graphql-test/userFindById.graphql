@@ -1,6 +1,6 @@
 
-query graphQLFindById($id :ID!){
-    graphQLFindById (id: $id) {
+query getUserFindById($id :ID!){
+    getUserFindById (id: $id) {
         no
         userId
         email

@@ -20,7 +20,7 @@ class UserQueryDslServiceTest (
 
     @Test
     @DisplayName("유저 단건 조회")
-    fun graphQLFindById () {
+    fun getUserFindById () {
 
 
         val user = userRepository.getByPK(1L)

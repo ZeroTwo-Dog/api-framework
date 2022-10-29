@@ -70,6 +70,7 @@ class JwtInterceptor(private val jwtTokenProvider: JwtTokenProvider,
 
     //권한이 필요없는 요청 체크
     private fun isAnonymousAble(document: String) : Boolean {
+        //FIMXE: 권한 필요없는 요청 추가시 아래에 리스트 추가
         val isAnonymousList = listOf("login", "registerUser")
         for (list in isAnonymousList) {
             if (document.contains(list)) {

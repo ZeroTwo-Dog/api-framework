@@ -13,10 +13,10 @@
 | 이름                               | 버전          | 사용                         |
 | ---------------------------------- | ------------- | ---------------------------- |
 | spring boot                        | 2.7.1         |                              |
-| jpa                                | 3.0.1         |                              |
+| jjwt                               | 0.11.2        | JWT                          |
 | swagger                            | 4.0.0         | API 개발 및 API 문서            |
-| query dsl                          | 5.0.0         |                          |
-| spring-boot-starter-graphql        | 1.0.0         | 스프링에서 공식제공 GraphQl       
+| query dsl                          | 5.0.0         |                              |
+| spring-boot-starter-graphql        | 1.0.0         | 스프링에서 공식제공 GraphQl        |
 
 
 ## 프로젝트 초기 설정
@@ -24,31 +24,22 @@
 - `TODO`, `FIXME` 확인 하고 수정한다
 - `.application.yml` 파일 확인하고 수정한다
 - `DB URL`  :
-- `AWS KEY` :  
 
   
 
 
-## 기본 url 정의
+## 기본 Graqhql 메소드 쿼리
 
 
 
-| 패턴                                       | name                 | 기능 명         |
-| ------------------------------------------ | -------------------- | --------------- |
-| /                                          | home-main            | 메인 화면       
-| /user/login                                | user-login           | 로그인화면      |
-| /user/agree                                | user-agree           | 약관동의        |
-| /user/register                             | user-register        | 회원가입        |
-| /user/find/id                              | user-find-id         | 아이디 찾기     | 
-| /user/find/pwd                             | user-find-pwd        | 비밀번호 찾기   |  
-| /user/modify/pwd/:userId/:expireDate/:hash | user-modify-pwd      | 비밀번호 변경   | 
+| 메소드                                       | 기능 명                |
+| ------------------------------------------ | -------------------- |
+| registerUser                               | 회원가입                |        
+| login                                      | 로그인                 |
+| getUserFindById                            | 아이디 유저 조회          |
+| getUserList                                | 유저 리스트 조회          | 
 
 
-
-
-## 주의
-
-### tdd 규칙
 
 
 

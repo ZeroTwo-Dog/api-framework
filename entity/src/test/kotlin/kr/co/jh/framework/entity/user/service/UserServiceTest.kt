@@ -19,11 +19,11 @@ class UserServiceTest (
 
     @Test
     @DisplayName("유저 단건 조회")
-    fun graphQLFindById () {
+    fun getUserFindById () {
         val email = graphQlTester.documentName("userFindById")
             .variable("id", 1L)
             .execute()
-            .path("graphQLFindById.email")
+            .path("getUserFindById.email")
             .entity(String::class.java)
             .get()
 
@@ -35,10 +35,10 @@ class UserServiceTest (
 
     @Test
     @DisplayName("유저 다건 조회")
-    fun getList () {
-        graphQlTester.documentName("userGetList")
+    fun getUserList () {
+        graphQlTester.documentName("usergetUserList")
             .execute()
-            .path("getList[*].userId")
+            .path("getUserList[*].userId")
             .entityList(String::class.java)
             .contains("283po1")
 
