@@ -1,6 +1,6 @@
 package kr.co.jh.framework.user_api.user.exception
 
-import java.lang.RuntimeException
+import org.springframework.security.core.AuthenticationException
 
 /**
  * Created by park on
@@ -8,6 +8,6 @@ import java.lang.RuntimeException
  */
 class UnauthenticatedAccessException(
     message: String? = null
-) : RuntimeException(
+) : AuthenticationException(
     message
 )

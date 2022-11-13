@@ -41,14 +41,14 @@ class UserAuthCommandService (private val authenticationManager: AuthenticationM
             authenticationManager.authenticate(UsernamePasswordAuthenticationToken
                 (loginDto.userId, loginDto.password))
         } catch (e: InternalAuthenticationServiceException) { // 존재하지 않는 사용자
-            throw UserNotFoundException("USER_NOT_FOUND")
+            throw UserNotFoundException("등록된 회원이 존재하지 않습니다.")
         } catch (e: DisabledException) {  // 유효한 회원이 아님
-            throw InvalidUserException("LOGIN_FAIL")
+            throw InvalidUserException("탈퇴한 회원입니다.")
         } catch (e: BadCredentialsException) {
             failPassword(loginDto.userId)
-            throw BadCredentialsException("FAIL_PASSWORD")
+            throw BadCredentialsException("비밀번호를 틀렸습니다.")
         } catch (e: LockedException) {    // 계정 잠김
-            throw UserLockException("REQUIRED_CAPTCHA")
+            throw UserLockException("회원 상태가 잠금입니다.")
         } catch (e: UnauthenticatedAccessException) {
             throw UnauthenticatedAccessException()
         }

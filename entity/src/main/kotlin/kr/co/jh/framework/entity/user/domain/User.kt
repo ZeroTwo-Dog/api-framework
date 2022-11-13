@@ -33,7 +33,7 @@ class User(
 
 
     @Column(name = "LOCK_YN")
-`    var locked: Boolean = false, // 계정
+    var locked: Boolean = false, // 계정
 
     @Column(name = "STATUS")
     @Enumerated(EnumType.STRING)
